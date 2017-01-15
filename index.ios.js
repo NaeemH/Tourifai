@@ -11,7 +11,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native';
 
 var options = {
@@ -23,6 +24,10 @@ var options = {
 };
 
 export default class Tourifai extends Component {
+  constructor() {
+    super();
+    this.state = {imageSource:'https://community.clarifai.com/uploads/default/_emoji/clarifai.png'};
+  }
   selectImage(){
   ImagePicker.showImagePicker(options, (response) => {
     console.log('Response = ', response);
@@ -34,6 +39,7 @@ export default class Tourifai extends Component {
     }
     else {
       // Do something with the selected image
+      this.setState({imageSource: response.uri.replace('file://', '')});
     }
   });
 }
@@ -43,6 +49,10 @@ export default class Tourifai extends Component {
         <TouchableHighlight onPress={this.selectImage.bind(this)}>
           <Text>Select an image</Text>
         </TouchableHighlight>
+        <Image
+          source={{uri: this.state.imageSource}}
+          style={styles.image}
+          />
       </View>
     );
   }
@@ -65,6 +75,10 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  image: {
+    width: 200,
+    height:200
+  }
 });
 
 AppRegistry.registerComponent('Tourifai', () => Tourifai);
