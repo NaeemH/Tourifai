@@ -1,7 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Naeem Hossain
+ * January 14, 2016
+ * Clarifai / REACT Native
  */
 
 import React, { Component } from 'react';
